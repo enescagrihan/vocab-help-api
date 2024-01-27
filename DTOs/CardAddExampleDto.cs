@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace InterviewAssistantAPI.DTOs
 {
-    public record struct TagAddDto(string TagName);
+    public record struct CardAddExampleDto(int id, string sentence);
 }

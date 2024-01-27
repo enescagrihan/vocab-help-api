@@ -165,6 +165,23 @@ namespace InterviewAssistantAPI.Controllers
             }
         }
 
+        [HttpPut("addMoreExample/{id}")]
+        public IActionResult AddMoreCardExample(CardAddExampleDto cardAddExample)
+        {
+            try
+            {
+                var card = _appDbContext.Cards.Find(cardAddExample.id);
+                if (card == null) return NotFound($"Language Card not found with id {cardAddExample.id}");
+                card.Example = card.Example + " " + cardAddExample.sentence;
+                _appDbContext.SaveChanges();
+                return Ok("Language card updated.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [EnableCors]
         [HttpPut("MarkCardAsKnown/{id}")]
         public IActionResult MarkCardAsKnown(int id)

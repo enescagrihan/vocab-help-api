@@ -60,7 +60,8 @@ namespace InterviewAssistantAPI.Controllers
             }
         }
 
-        private Tag MapTagObject (TagAddDto payload) {
+        private Tag MapTagObject(TagAddDto payload)
+        {
             var result = new Tag();
             result.TagName = payload.TagName;
             result.Cards = null;
@@ -84,7 +85,7 @@ namespace InterviewAssistantAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult EditTag(Tag tag)
+        public IActionResult EditTag(TagEditDto tag)
         {
             if (tag == null)
             {
@@ -92,8 +93,8 @@ namespace InterviewAssistantAPI.Controllers
             }
             try
             {
-                var ltag = _appDbContext.Tags.Find(tag.Id);
-                if (ltag == null) return NotFound($"Language Tag not found with id {tag.Id}");
+                var ltag = _appDbContext.Tags.Find(tag.id);
+                if (ltag == null) return NotFound($"Language Tag not found with id {ltag.Id}");
                 ltag.TagName = tag.TagName;
                 _appDbContext.SaveChanges();
                 return Ok("Language tag's name updated.");
@@ -104,12 +105,31 @@ namespace InterviewAssistantAPI.Controllers
             }
         }
 
+        [HttpPut("editTagName/{id}")]
+        public IActionResult AddMoreCardExample(TagEditDto tag)
+        {
+            try
+            {
+                var ltag = _appDbContext.Tags.Find(tag.id);
+                if (ltag == null) return NotFound($"Language Card not found with id {tag.id}");
+                ltag.TagName = tag.TagName;
+                _appDbContext.SaveChanges();
+                return Ok("Language card updated.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         [HttpDelete]
-        public IActionResult DeleteTag(int id) {
+        public IActionResult DeleteTag(int id)
+        {
             try
             {
                 var tag = _appDbContext.Tags.Find(id);
-                if(tag == null) return BadRequest($"Tag not found with id {id}");
+                if (tag == null) return BadRequest($"Tag not found with id {id}");
                 _appDbContext.Tags.Remove(tag);
                 _appDbContext.SaveChanges();
                 return Ok("Language Tag Deleted");

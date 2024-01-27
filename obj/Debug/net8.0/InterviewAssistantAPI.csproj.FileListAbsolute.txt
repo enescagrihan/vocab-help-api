@@ -230,3 +230,4 @@
 /Users/cagriozturk/Desktop/InterviewAssistantAPI/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
 /Users/cagriozturk/Desktop/InterviewAssistantAPI/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
 /Users/cagriozturk/Desktop/InterviewAssistantAPI/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll
+/Users/cagriozturk/Desktop/InterviewAssistantAPI/obj/Debug/net8.0/InterviewAssistantAPI.sourcelink.json
